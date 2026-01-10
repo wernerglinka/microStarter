@@ -1,7 +1,7 @@
 {
   "title": "Metalsmith Micro Starter",
   "description": "Starter to build Metalsmith websites with Claude.",
-  "url": "",
+  "url": "https://example.com",
   "locale": "en_US",
 
   "defaultImage": "/assets/images/CLAUDE+Metalsmith.jpg",

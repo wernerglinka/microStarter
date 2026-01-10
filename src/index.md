@@ -16,7 +16,7 @@ seo:
 sections:
   - sectionType: text-only
     containerTag: article
-    classes: 'first-section'
+    classes: ''
     id: ''
     isDisabled: false
     isReverse: false
