@@ -20,7 +20,7 @@ import safeLinks from 'metalsmith-safe-links';
 
 import componentDependencyBundler from 'metalsmith-bundled-components';
 
-import assets from 'metalsmith-static-files'; // Copies static assets to build
+// Static assets now handled by native metalsmith.statik() method in v2.7.0
 import seo from 'metalsmith-seo'; // Adds SEO metadata to pages
 import optimizeImages from 'metalsmith-optimize-images'; // Optimizes images for web
 import htmlMinifier from 'metalsmith-optimize-html'; // Minifies HTML in production
@@ -99,7 +99,14 @@ metalsmith
   .clean( true )
   // Ignore macOS system files
   .ignore( [ '**/.DS_Store' ] )
-  .watch( isProduction ? false : [ 'src/**/*', 'lib/layouts/**/*', 'lib/assets/**/*', 'lib/data/**/*' ] )
+  .watch( isProduction ? false : [
+    'src/**/*',
+    'lib/layouts/**/*',
+    'lib/assets/main.css',
+    'lib/assets/main.js',
+    'lib/assets/styles/**/*',
+    'lib/data/**/*'
+  ] )
   // Pass NODE_ENV to plugins
   .env( 'NODE_ENV', process.env.NODE_ENV )
   // Where to find source files
@@ -200,15 +207,12 @@ metalsmith
   )
 
   /**
-   * Copy static assets to the build directory
-   * Learn more: https://github.com/wernerglinka/metalsmith-static-files
+   * Copy static assets to the build directory without plugin processing
+   * Native method in Metalsmith 2.7.0 - replaces metalsmith-static-files
+   * Static files in src/assets/ (images, icons) are copied directly to build/assets/
+   * Bundler inputs (main.css, main.js, styles/) remain in lib/assets/ for processing
    */
-  .use(
-    assets( {
-      source: 'lib/assets/', // Where to find assets
-      destination: 'assets/' // Where to copy assets
-    } )
-  );
+  .statik( [ 'assets' ] );
 
 // These plugins only run in production mode to optimize the site
 if ( isProduction ) {

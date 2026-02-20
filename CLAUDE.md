@@ -30,12 +30,13 @@ This starter builds static websites using **sectioned pages** - pages defined en
 
 ```
 src/                     → Page content (markdown files with YAML frontmatter)
+  assets/                → Static files (images, icons) - copied via statik()
 lib/layouts/components/
   sections/              → Section components (text-only, header, footer, commons)
   _partials/             → Partial components (text, ctas, button, image, etc.)
   _helpers/              → Template utilities (sections-renderer, render-section)
 lib/layouts/pages/       → Page templates (sections.njk, default.njk)
-lib/assets/              → Static files (CSS, JS, images)
+lib/assets/              → CSS/JS bundler inputs (main.css, main.js, styles/)
 lib/data/                → Site configuration (site.json)
 nunjucks-filters/        → Custom Nunjucks filters
 ```

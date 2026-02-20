@@ -90,10 +90,11 @@ After adding components, restart the dev server. The componentDependencyBundler 
 ```
 .
 ├── src/                         # Content
+│   ├── assets/                  # Static files (images, icons) - copied via statik
 │   ├── index.md                 # Homepage (Hello World)
 │   └── 404.html                 # Error page
 ├── lib/
-│   ├── assets/                  # Static files (CSS, JS, images)
+│   ├── assets/                  # CSS/JS bundler inputs (main.css, main.js, styles/)
 │   ├── data/                    # Site configuration (site.json)
 │   └── layouts/
 │       ├── components/
